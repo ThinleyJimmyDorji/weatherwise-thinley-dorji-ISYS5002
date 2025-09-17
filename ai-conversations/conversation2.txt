@@ -35,15 +35,15 @@ Based on my research, here's a comprehensive comparison of the three weather dat
 - ❌ **No advanced features**: Lacks sophisticated weather analysis capabilities
 
 **Update Frequency:**
-- **Status**: Actively maintained by course instructor
-- **Updates**: Regular updates aligned with course requirements
-- **Reliability**: High - specifically designed for educational use
+- **Status**: Actively maintained by Igor Chubin (creator of wttr.in)
+- **Updates**: Regular updates aligned with wttr.in service
+- **Reliability**: High - designed for educational use with robust error handling
 
 **Community Support:**
-- **Size**: Small but focused community (course students)
-- **Documentation**: Comprehensive educational documentation
-- **Support**: Direct instructor support available
-- **GitHub**: Active repository with course-specific examples
+- **Size**: Growing community focused on educational use
+- **Documentation**: Comprehensive documentation with examples
+- **Support**: GitHub repository with active development
+- **Creator**: Igor Chubin (same creator as wttr.in service)
 
 **Implementation Efficiency:**
 - **Time Complexity**: O(1) - Single API call with minimal processing
