@@ -1,9 +1,10 @@
-# 🌦️ WeatherWise: Intelligent Weather Analysis & Advisory System
+# 🌦️ WeatherWise: Intelligent Weather Analysis & Advisory System with Ollama Integration
 
-A comprehensive Python weather application that combines real-time weather data, natural language processing, and interactive visualizations. Built as part of the ISYS5002 course assignment, demonstrating effective use of AI tools in software development.
+A comprehensive Python weather application that combines real-time weather data, natural language processing powered by **Ollama**, and interactive visualizations. Built as part of the ISYS5002 course assignment, demonstrating effective use of AI tools in software development.
 
 ![Build With AI](https://img.shields.io/badge/Built_with-AI-blueviolet?logo=openai)
 ![Python](https://img.shields.io/badge/Made_with-Python-3776AB?logo=python)
+![Ollama](https://img.shields.io/badge/NLP-Ollama-00ADEF?logo=ollama)
 ![Visualisation](https://img.shields.io/badge/Includes-Visualisations-orange?logo=matplotlib)
 ![Weather API](https://img.shields.io/badge/Weather_API-fetch--my--weather-green)
 
@@ -11,14 +12,37 @@ A comprehensive Python weather application that combines real-time weather data,
 
 ## 🚀 Quick Start
 
-### Option 1: Google Colab (Recommended)
+### Option 1: Google Colab (Easiest - No Installation Required)
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ThinleyJimmyDorji/weatherwise-thinley-dorji-ISYS5002/blob/isys-5002-assignment-thinley/weather_advisor_app.ipynb)
 
-### Option 2: Local Development
-1. Clone this repository
-2. Install required packages: `pip install fetch-my-weather pyinputplus matplotlib requests`
-3. Open `weather_advisor_app.ipynb` in Jupyter Notebook
-4. Run all cells to start the application
+**With Ollama in Colab:**
+1. Open the notebook in Colab
+2. Run the **"Google Colab: Ollama Setup"** cell (takes 2-5 minutes)
+3. Continue with remaining cells - full AI-powered NLP enabled!
+
+**Without Ollama (Quick Start):**
+- Skip the Ollama setup cell
+- The app will use keyword-based NLP as fallback (still functional!)
+
+### Option 2: Local Development with Ollama (Full Features)
+1. **Install Ollama**: Visit [https://ollama.ai](https://ollama.ai) and install for your platform
+   - macOS: `brew install ollama` or download the app
+   - Linux: `curl -fsSL https://ollama.ai/install.sh | sh`
+   - Windows: Download from website
+2. **Start Ollama and pull a model**:
+   ```bash
+   ollama pull llama3.2
+   # Or choose another model: llama2, mistral, phi, etc.
+   ```
+3. Clone this repository
+4. Install required packages: 
+   ```bash
+   pip install fetch-my-weather pyinputplus matplotlib requests ollama
+   ```
+5. Open `weather_advisor_app.ipynb` in Jupyter Notebook
+6. Run all cells to start the application
+
+The application will automatically detect if Ollama is available and use it for enhanced NLP capabilities. If Ollama is not available, it will gracefully fall back to keyword-based parsing.
 
 ---
 
@@ -36,11 +60,16 @@ A comprehensive Python weather application that combines real-time weather data,
 - Professional-quality charts with proper labeling and legends
 - Configurable display options for different use cases
 
-### 🤖 **Natural Language Interface**
-- Ask weather questions in plain English
-- Intelligent parsing of locations, time periods, and weather attributes
-- Context-aware responses based on user queries
-- Examples: "Will it rain tomorrow in Sydney?" or "What's the temperature in Paris?"
+### 🤖 **Ollama-Powered Natural Language Interface**
+- **Advanced AI Understanding**: Uses Ollama (local LLM) for intelligent question parsing
+- **Natural Conversations**: Ask weather questions in plain English with complex phrasing
+- **Context-Aware Responses**: AI-generated responses that understand nuance and context
+- **Fallback Support**: Graceful degradation to keyword-based parsing if Ollama unavailable
+- **Multiple Models**: Support for various Ollama models (llama3.2, llama2, mistral, etc.)
+- **Examples**: 
+  - "Will it rain tomorrow in Sydney?"
+  - "What's the temperature like in Paris right now?"
+  - "Should I bring an umbrella to London this weekend?"
 
 ### 🧭 **Interactive User Interface**
 - Clean console-based menu system using `pyinputplus`
@@ -55,11 +84,12 @@ A comprehensive Python weather application that combines real-time weather data,
 The application follows a **modular design** with clear separation of concerns:
 
 ### **Core Modules:**
-- **Setup & Configuration**: Environment setup and package imports
+- **Setup & Configuration**: Environment setup and package imports (including Ollama)
 - **Error Logging & Utilities**: Centralized error handling and common functions
+- **🆕 Ollama Integration**: LLM communication and prompt engineering for enhanced NLP
 - **Weather Data Functions**: API integration and data processing
 - **Visualization Functions**: Chart creation and data visualization
-- **Natural Language Processing**: Question parsing and response generation
+- **Natural Language Processing**: Hybrid AI/keyword-based question parsing and response generation
 - **User Interface**: Menu system and user input handling
 - **Main Application Logic**: Application flow and integration
 - **Testing & Examples**: Test functions and debugging tools
@@ -190,11 +220,85 @@ Select visualization type: 3 (Both Charts)
 - `pyinputplus` - User input handling
 - `matplotlib` - Data visualization
 - `requests` - HTTP requests
+- `ollama` - Python client for Ollama (optional but recommended)
+- **Ollama** - Local LLM runtime (optional but recommended for enhanced NLP)
 
 ### **Installation:**
+
+**Basic Installation (keyword-based NLP):**
 ```bash
-pip install fetch-my-weather pyinputplus matplotlib requests
+pip install fetch-my-weather pyinputplus matplotlib requests ollama
 ```
+
+**Full Installation (with Ollama for enhanced NLP):**
+```bash
+# Install Python packages
+pip install fetch-my-weather pyinputplus matplotlib requests ollama
+
+# Install Ollama
+# macOS:
+brew install ollama
+
+# Linux:
+curl -fsSL https://ollama.ai/install.sh | sh
+
+# Windows: Download from https://ollama.ai
+
+# Pull a model (choose one or more)
+ollama pull llama3.2    # Recommended: Latest, efficient
+ollama pull llama2      # Alternative: Stable
+ollama pull mistral     # Alternative: Fast and capable
+```
+
+---
+
+## 🤖 Ollama Integration Details
+
+### **How It Works:**
+
+The application uses a **hybrid approach** to natural language processing:
+
+1. **Primary Method (Ollama Available)**:
+   - Questions are sent to local Ollama LLM for intelligent parsing
+   - LLM extracts location, time period, and weather attributes with high accuracy
+   - Natural language responses are generated using the LLM with weather data context
+   - Supports complex queries and conversational language
+
+2. **Fallback Method (Ollama Unavailable)**:
+   - Keyword-based pattern matching for question parsing
+   - Template-based response generation
+   - Still functional but less sophisticated
+
+### **Benefits of Ollama Integration:**
+
+✅ **Privacy**: All AI processing happens locally - no data sent to cloud services  
+✅ **Performance**: Fast inference with local models  
+✅ **Flexibility**: Easy to switch between different models (llama3.2, mistral, etc.)  
+✅ **Cost**: Free to use - no API costs  
+✅ **Understanding**: Better comprehension of complex and conversational questions  
+✅ **Responses**: More natural and context-aware answers  
+
+### **Example Comparisons:**
+
+**Question**: "Should I bring an umbrella to Sydney this weekend?"
+
+**With Ollama**:
+- ✅ Correctly identifies: Sydney, weekend, precipitation concern
+- ✅ Generates: "This weekend in Sydney, there's a 60% chance of rain on Saturday with 8mm expected. I'd definitely recommend bringing an umbrella, especially on Saturday!"
+
+**Without Ollama (Fallback)**:
+- ⚠️ May miss nuanced "umbrella" → "rain" connection
+- ⚠️ Response: "The precipitation chance in Sydney tomorrow is 60%."
+
+### **Supported Models:**
+
+The application works with any Ollama model, but recommended ones include:
+- **llama3.2** (Default): Best balance of speed and capability
+- **llama2**: Stable and well-tested
+- **mistral**: Fast inference, good for quick responses
+- **phi**: Lightweight, good for systems with limited resources
+
+To change the model, edit the `OLLAMA_MODEL` variable in the Ollama Integration cell.
 
 ---
 
@@ -220,7 +324,10 @@ This project demonstrates mastery of:
 - **Modular Python Programming** - Clean, maintainable code structure
 - **API Integration** - Weather data retrieval and processing
 - **Data Visualization** - Professional-quality charts and graphs
-- **Natural Language Processing** - Question parsing and response generation
+- **🆕 Local LLM Integration** - Practical implementation of Ollama for NLP tasks
+- **🆕 Prompt Engineering** - Effective system and user prompts for structured outputs
+- **Natural Language Processing** - Hybrid AI/keyword-based question parsing and response generation
+- **Fallback Strategies** - Graceful degradation when AI services unavailable
 - **User Interface Design** - Intuitive console-based interfaces
 - **AI-Assisted Development** - Strategic use of AI tools in software development
 - **Error Handling** - Robust error management and user feedback
