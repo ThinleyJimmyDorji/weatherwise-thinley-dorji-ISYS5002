@@ -220,17 +220,17 @@ Select visualization type: 3 (Both Charts)
 - `pyinputplus` - User input handling
 - `matplotlib` - Data visualization
 - `requests` - HTTP requests
-- `ollama` - Python client for Ollama (optional but recommended)
+- `ollama` - Python client for Ollama
 - **Ollama** - Local LLM runtime (optional but recommended for enhanced NLP)
 
 ### **Installation:**
 
-**Basic Installation (keyword-based NLP):**
+**Python Packages:**
 ```bash
 pip install fetch-my-weather pyinputplus matplotlib requests ollama
 ```
 
-**Full Installation (with Ollama for enhanced NLP):**
+**Full Setup with Ollama (for AI-powered NLP):**
 ```bash
 # Install Python packages
 pip install fetch-my-weather pyinputplus matplotlib requests ollama
